@@ -23,7 +23,7 @@ jobs:
 
       - name: Deploy the website
         run: >-
-          rsync -avx --no-perms --no-owner --no-group --delete --exclude=".*/" . $DEPLOY_USERNAME@$DEPLOY_SERVER:/data/docker/nginx/www/diff-render
+          rsync -avx --no-perms --no-owner --no-group --omit-dir-times --delete --exclude=".*/" . $DEPLOY_USERNAME@$DEPLOY_SERVER:/data/docker/nginx/www/diff-render
         env:
           DEPLOY_SERVER: ${{ secrets.DEPLOY_SERVER }}
           DEPLOY_USERNAME: ${{ secrets.DEPLOY_USERNAME }}
