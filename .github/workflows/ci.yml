@@ -2,6 +2,8 @@ name: CI
 run-name: Site deployment
 on:
   push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -27,13 +29,9 @@ jobs:
       - name: Install Hugo
         run: sudo snap install hugo
 
-      - name: Clear build directory
-        working-directory: ./hugo
-        run: rm -rf public
-
       - name: Build with Hugo
         working-directory: ./hugo
-        run: hugo --minify
+        run: rm -rf public && hugo --minify
 
       - name: Deploy the website
         run: >-
