@@ -1,10 +1,11 @@
 ---
 title: "Basics"
 weight: 1
+draft: true
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
-# bookCollapseSection: false
+bookCollapseSection: true
 # bookComments: false
 # bookSearchExclude: false
 ---

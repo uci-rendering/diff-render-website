@@ -4,11 +4,11 @@ weight: 1
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
-# bookCollapseSection: false
+bookCollapseSection: true
 # bookComments: false
 # bookSearchExclude: false
 ---
 
 # Physics-Based Differentiable Rendering: Basics
 
-In this section, we cover the mathematical and algorithmic preliminaries.
+In this section, we cover important mathematical and algorithmic preliminaries that will be used repeatedly in the rest of the tutorials.

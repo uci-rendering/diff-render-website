@@ -27,9 +27,13 @@ jobs:
       - name: Install Hugo
         run: sudo snap install hugo
 
+      - name: Clear build directory
+        working-directory: ./hugo
+        run: rm -rf public
+
       - name: Build with Hugo
         working-directory: ./hugo
-        run: hugo --minify -D
+        run: hugo --minify
 
       - name: Deploy the website
         run: >-
