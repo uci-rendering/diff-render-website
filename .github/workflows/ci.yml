@@ -22,7 +22,7 @@ jobs:
           DEPLOY_SERVER: ${{ secrets.DEPLOY_SERVER }}
 
       - name: Install Hugo
-        run: sudo snap install Hugo
+        run: sudo snap install hugo
 
       - name: Build with Hugo
         working-directory: ./hugo
