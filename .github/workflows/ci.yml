@@ -10,6 +10,9 @@ jobs:
     steps:
       - name: Checkout the current branch
         uses: actions/checkout@v3
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
       - name: Initialize the ssh-agent
         uses: webfactory/ssh-agent@v0.7.0
