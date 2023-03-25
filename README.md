@@ -1,6 +1,6 @@
-# Physics-Based Differentiable and Inverse Rendering Website
+# Physics-Based Differentiable and Inverse Rendering
 
-This website is for providing a comprehensive introduction---with detailed examples and codes---on physics-based differentiable and inverse rendering techniques.
+This website provides a comprehensive introduction---with detailed examples and codes---on recent advances in physics-based differentiable and inverse rendering.
 
 ## Accessing the website
 
