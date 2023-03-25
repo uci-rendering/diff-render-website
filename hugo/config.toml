@@ -1,0 +1,4 @@
+baseURL = 'https://diff-render.org/'
+languageCode = 'en-us'
+title = 'Physics-Based Differentiable and Inverse Rendering'
+theme = "hugo-book"

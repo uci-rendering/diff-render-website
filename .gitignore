@@ -1,0 +1,4 @@
+/hugo/public
+/hugo/resources/_gen
+/hugo/*.lock
+.vscode/
