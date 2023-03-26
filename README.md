@@ -20,12 +20,11 @@ To build a persistent version of the website (without including any draft pages)
 
 This website uses [MathJax](https://www.mathjax.org/) to support both inline and display math (using TeX/LaTeX).
 However, there is a known issue between Hugo's Markdown processor and MathJax: TeX symbols like `_` (for subscripts) may be misinterpreted by the Markdown processor (as italic) and, thus, breaking math equations.
-To mitigate this issue, we use [this trick](https://geoffruddock.com/math-typesetting-in-hugo/) that requires inline math use ``$ ... $`` and display math to use
-
+To mitigate this issue, we use [this trick](https://geoffruddock.com/math-typesetting-in-hugo/) that requires inline math use `` `$ ... $` `` and display math to use
 ```
 <div>
 $$
 ...
-</div>
 $$
+</div>
 ```
