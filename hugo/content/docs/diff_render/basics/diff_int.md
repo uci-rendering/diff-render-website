@@ -61,6 +61,27 @@ When this is the case, the derivative $\D I/\D\theta$ in Eq. \eqref{eqn:dI} can 
 
 ### Success Case
 
+We now provide a toy example where Eq. \eqref{eqn:I} holds.
+Let $f(x, \theta) := x \\,\theta$. Then,
+
+\\[
+  I = \int_0^2 (x \\,\theta) \\,\D x = \left[ \frac{x^2 \\,\theta}{2} \right]_0^2 = 2\theta.
+\\]
+
+So we know that
+
+\\[
+  \frac{\D I}{\D\theta} = \frac{\D}{\D\theta} (2\theta) = 2.
+\\]
+
+We now try calculating the same derivative $\D I/\D\theta$ using Eq. \eqref{eqn:dI}:
+
+\\[
+  \frac{\D I}{\D\theta} = \int_0^2 \frac{\D}{\D\theta} (x\\,\theta) \\,\D x = \int_0^2 x \\,\D x = \left[ \frac{x^2}{2} \right]_0^2 = 2,
+\\]
+
+matching the result calculated manually above.
+
 
 ### Failure Case
 
