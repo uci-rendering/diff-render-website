@@ -9,6 +9,6 @@ bookCollapseSection: true
 # bookSearchExclude: false
 ---
 
-# Physics-Based Differentiable Rendering: Basics
+# Physics-Based Differentiable Rendering Basics
 
 In this section, we cover important mathematical and algorithmic preliminaries that will be used repeatedly in the rest of the tutorials.

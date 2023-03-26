@@ -1,6 +1,7 @@
 ---
 title: "Differentiating Integrals"
 weight: 1
+mathjax: true
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -15,105 +16,191 @@ weight: 1
 
 Since **forward rendering** largely amounts to computing (high-dimensional) integrals, physics-based **differentiable rendering** requires estimating derivatives of forward-rendering integrals (with respect to arbitrary parameters of a virtual scene).
 
-In what follows, we discuss the differentiation of a general Lebesgue integral $I(\theta)$ over some domain $\Omega$ associated with measure $\mu$:
+In what follows, we discuss the differentiation of a general Lebesgue integral `$I(\theta)$` over some domain `$\Omega$` associated with measure `$\mu$`:
 
+<div>
 \begin{equation}
   \label{eqn:I}
-  I(\theta) = \int_{\Omega} f(\bx, \theta) \\,\D\mu(\bx).
+  I(\theta) = \int_{\Omega} f(\bx, \theta) \,\D\mu(\bx).
 \end{equation}
+</div>
 
-When applied to rendering, the domain $\Omega$ in Eq. \eqref{eqn:I} can be:
+When applied to rendering, the domain `$\Omega$` in Eq. \eqref{eqn:I} can be:
 
-- The surface of the unit sphere $\sph := \\{ \bx \in \real^3 : \| \bx \| = 1 \\}$;
-- The surface $\calM$ of objects in the scene;
+- The surface of the unit sphere `$\sph := \{ \bx \in \real^3 : \| \bx \| = 1 \}$`;
+- The surface `$\calM$` of objects in the scene;
 - The path space under Veach's path-integral formulation.
 
 In practice, the integral in Eq. \eqref{eqn:I} can be estimated numerically using *Monte Carlo integration* via
 
+<div>
 \begin{equation}
   \label{eqn:I_MC}
   \langle I(\theta) \rangle = \frac{1}{N} \sum_{i = 1}^N \frac{f(\bx_i, \theta)}{p(\bx_i)},
 \end{equation}
+</div>
 
-where $\bx_1, \bx_2, \ldots, \bx_N \in \Omega$ are $N$ random samples drawn from some probability density distribution $p$.
+where `$\bx_1, \bx_2, \ldots, \bx_N \in \Omega$` are `$N$` random samples drawn from some probability density distribution `$p$`.
 
-## 1. The Incomplete Solution
+In Eq. \eqref{eqn:I_MC}, `$\langle I(\theta) \rangle$` is an *unbiased* and *consistent* estimator of $I(\theta)$.
 
-The derivative of the integral in Eq. \eqref{eqn:I} with respect to $\theta$ can *sometimes* be obtained by exchanging the ordering of differentiation and integration:
 
+## The Incomplete Solution
+
+The derivative of the integral in Eq. \eqref{eqn:I} with respect to `$\theta$` can *sometimes* be obtained by exchanging the ordering of differentiation and integration:
+
+<div>
 \begin{equation}
-  \label{eqn:dI}
-  \frac{\D}{\D\theta} I = \frac{\D}{\D\theta} \left( \int_{\Omega} f(\bx, \theta) \\,\D\mu(\bx) \right)
+  \label{eqn:dI_0}
+  \frac{\D}{\D\theta} I = \frac{\D}{\D\theta} \left( \int_{\Omega} f(\bx, \theta) \,\D\mu(\bx) \right)
   \stackrel{\Large ?}{=} \int_{\Omega} \left( \frac{\D}{\D\theta} f(\bx, \theta) \right) \D\mu(\bx).
 \end{equation}
+</div>
 
-Precisely, the second equality in Eq. \eqref{eqn:dI} requires the integrand $f$ to be **continuous** throughout the domain $\Omega$.
-When this is the case, the derivative $\D I/\D\theta$ in Eq. \eqref{eqn:dI} can be estimated using *Monte Carlo integration* using a similar process as Eq. \eqref{eqn:I_MC} via
+Precisely, the second equality in Eq. \eqref{eqn:dI_0} requires the integrand $f$ to be **continuous** throughout the domain `$\Omega$`.
+When this is the case, the derivative `$\D I/\D\theta$` in Eq. \eqref{eqn:dI_0} can be estimated using *Monte Carlo integration* using a similar process as Eq. \eqref{eqn:I_MC} via
 
+<div>
 \begin{equation}
   \label{eqn:dI_MC}
   \left\langle \frac{\D I}{\D\theta} \right\rangle = \frac{1}{N} \sum_{i = 1}^N \frac{\D f(\bx_i, \theta)/\D\theta}{p(\bx_i)}.
 \end{equation}
+</div>
 
 
-### 1.1 Success Example
+### Success Example
 
-We now provide a toy example where Eq. \eqref{eqn:I} holds.
-Let $f(x, \theta) := x \\,\theta$. Consider the simple Riemann integral:
+We now provide a toy example where Eq. \eqref{eqn:dI_0} holds.
+Let `$f(x, \theta) := x^2 \,\theta$`. Consider the following simple Riemann integral:
 
-\\[
-  I = \int_0^2 (x \\,\theta) \\,\D x = \left[ \frac{x^2 \\,\theta}{2} \right]_0^2 = 2\theta.
-\\]
+<div>
+$$
+  I = \int_0^1 (x^2 \,\theta) \,\D x.
+$$
+</div>
 
-So we know that
+Since `$I = \left[ (x^3 \,\theta)/3 \right]_0^1 = \theta/3$`, we know that
 
-\\[
-  \frac{\D I}{\D\theta} = \frac{\D}{\D\theta} (2\theta) = \boxed{2}.
-\\]
+<div>
+$$
+  \frac{\D I}{\D\theta} = \frac{\D}{\D\theta} \left( \frac{\theta}{3} \right)
+  = {\color{blue}\frac{1}{3}}.
+$$
+</div>
 
-We now try calculating the same derivative $\D I/\D\theta$ using Eq. \eqref{eqn:dI}:
+We now try calculating the same derivative `$\D I/\D\theta$` using Eq. \eqref{eqn:dI_0}:
 
-\\[
-  \frac{\D I}{\D\theta} = \int_0^2 \frac{\D}{\D\theta} (x\\,\theta) \\,\D x = \int_0^2 x \\,\D x = \left[ \frac{x^2}{2} \right]_0^2 = \boxed{2},
-\\]
+<div>
+$$
+  \frac{\D I}{\D\theta} = \int_0^1 \frac{\D}{\D\theta} (x^2 \,\theta) \,\D x
+  = \int_0^1 x^2 \,\D x
+  = \left[ \frac{x^3}{3} \right]_0^1
+  = {\color{blue}\frac{1}{3}},
+$$
+</div>
 
 which matches the manually calculated result above.
 
 
-### 1.2 Failure Example
+### Failure Example
 
-We now show another toy example for which simply exchanging differentiation and integration outlined in Eq. \eqref{eqn:dI} fails.
+We now show another toy example for which simply exchanging differentiation and integration outlined in Eq. \eqref{eqn:dI_0} fails.
 Let
 
-\\[
- f(x, \theta) := \begin{cases}
-  1, & (x < \theta)\\\\[4pt]
-  0. & (x \geq \theta)
-\end{cases}
-\\]
+<div>
+$$
+  f(x, \theta) := \begin{cases}
+    1/2, & (x < \theta)\\
+    0. & (x \geq \theta)
+  \end{cases}
+$$
+</div>
 
-Then, for any $0 < \theta < 1$,
+Then, for any `$0 < \theta < 1$`, it holds that
 
-\\[
-  I = \int_0^1 f(x, \theta) \\,\D x = \int_0^\theta \D x = [1]_0^{\theta} = \theta,
-\\]
+<div>
+$$
+  I = \int_0^1 f(x, \theta) \,\D x = \int_0^\theta \frac{1}{2} \,\D x = \left[ \frac{x}{2} \right]_0^{\theta} = \frac{\theta}{2},
+$$
+</div>
 
 and
 
-\\[
-  \frac{\D I}{\D\theta} = \frac{\D}{\D\theta} \theta = \boxed{1}.
-\\]
+<div>
+$$
+  \frac{\D I}{\D\theta} = \frac{\D}{\D\theta} \left( \frac{\theta}{2} \right) = {\color{red}\frac{1}{2}}.
+$$
+</div>
 
-However, since the integrand $f$ is piecewise constant in this example, we have $\frac{\D f}{\D\theta} \equiv 0$.
-Thus, Eq. \eqref{eqn:dI} in this example gives
+However, since the integrand $f$ is piecewise-constant in this example, we have `$\D f/\D\theta \equiv 0$`.
+Thus, Eq. \eqref{eqn:dI_0} in this example gives
 
-\\[
-  \int_0^1 \frac{\D}{\D\theta} f(x, \theta) \\,\D x = \int_0^1 0 \\,\D x = \boxed{0},
-\\]
+<div>
+$$
+  \int_0^1 \frac{\D}{\D\theta} f(x, \theta) \,\D x = \int_0^1 0 \,\D x = {\color{red}0},
+$$
+</div>
 
 which does **not** match the manually calculated result.
 
 
-## 2. The General Solution
+## The General Solution
 
-Before presenting the general expression of the derivative $\D I/\D\theta$, we first examine the [success](#11-success-example) and [failure](#12-failure-example) examples shown above.
+Before presenting the general expression of the derivative `$\D I/\D\theta$`, we first examine the examples shown above.
+
+### Examining The Previous Examples
+
+#### The Success Example
+
+We first examine the [success example](#success-example) with the integrand `$f(x, \theta) = x^2 \,\theta$`.
+In the following, we show the graph of `$f(x, \theta)$` for some fixed `$\theta = \theta_0$` in the following:
+![SuccessExample_0](/images/diff-render/basics/diff-int/SuccessExample_0_ManimCE_v0.17.2.png)
+By definition, the integral `$I(\theta_0) := \int_0^1 f(x, \theta) \,\D x$` equals the signed area (marked in light blue) of the region below the graph.
+Further, by adding some small `$\Delta\theta > 0$` to `$\theta_0$`, we obtain the graph of `$f(x, \theta_0 + \Delta\theta)$` and the corresponding signed area `$I(\theta_0 + \Delta\theta)$`, both illustrated in red:
+![SuccessExample_1](/images/diff-render/basics/diff-int/SuccessExample_1_ManimCE_v0.17.2.png)
+
+We recall that the derivative of $I$ with respect to `$\theta$` is given by the rate at which $I$ changes with `$\theta$`.
+To calculate this rate, we examine the difference between `$I(\theta_0 + \Delta\theta)$` and `$I(\theta_0)$`:
+
+<div>
+\begin{equation}
+  \label{eqn:diffI0_0}
+  I(\theta_0 + \Delta\theta) - I(\theta_0) = \int_0^1 \left(f(x, \theta_0 + \Delta\theta) - f(x, \theta_0)\right) \,\D x.
+\end{equation}
+</div>
+
+Geometrically, this difference equals the (signed) area of the orange region illustrated below:
+![SuccessExample_2](/images/diff-render/basics/diff-int/SuccessExample_2_ManimCE_v0.17.2.png)
+
+At each fixed `$0 < x < 1$`, the integrand of Eq. \eqref{eqn:diffI0_0} satisfies that
+
+<div>
+$$
+  f(x, \theta_0 + \Delta\theta) - f(x, \theta_0) \approx \left[ \frac{\D}{\D\theta} f(x, \theta) \right]_{\theta = \theta_0} \Delta\theta.
+$$
+</div>
+
+Base on this relation, factoring out `$\Delta\theta$` in Eq. \eqref{eqn:diffI0_0} produces:
+
+<div>
+$$
+  I(\theta_0 + \Delta\theta) - I(\theta_0) \approx \Delta\theta \int_0^1 \left[ \frac{\D}{\D\theta} f(x, \theta) \right]_{\theta = \theta_0} \D x.
+$$
+</div>
+
+In both equations above, the equalities become exact at the limit of `$\Delta\theta \to 0$`.
+Therefore, for any `$\theta_0 \in \real$`, we have
+
+<div>
+$$
+  \left[ \frac{\D}{\D\theta} I(\theta) \right]_{\theta = \theta_0}
+  := \lim_{\Delta\theta \to 0} \frac{I(\theta_0 + \Delta\theta) - I(\theta_0)}{\Delta\theta} = \int_0^1 \left[ \frac{\D}{\D\theta} f(x, \theta) \right]_{\theta = \theta_0} \D x,
+$$
+</div>
+
+which agrees with Eq. \eqref{eqn:dI_0}.
+
+
+#### The Failure Example
+
+So what has been the cause for the [failure example](#failure-example)?

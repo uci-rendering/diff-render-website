@@ -3,6 +3,14 @@ languageCode = 'en-us'
 title = 'Physics-Based Differentiable and Inverse Rendering'
 theme = "hugo-book"
 
+[params]
+  BookRepo = "https://github.com/uci-rendering/diff-render-website"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 [security]
   enableInlineShortcodes = false
   [security.exec]
