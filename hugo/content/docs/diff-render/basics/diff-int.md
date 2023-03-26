@@ -10,9 +10,11 @@ mathjax: true
 # bookSearchExclude: false
 ---
 
+{{< latex_macros_basic >}}
+
 # Differentiating Integrals
 
-{{< latex_macros_basic >}}
+_by Shuang Zhao_
 
 Since **forward rendering** largely amounts to computing (high-dimensional) integrals, physics-based **differentiable rendering** requires estimating derivatives of forward-rendering integrals (with respect to arbitrary parameters of a virtual scene).
 
@@ -108,19 +110,26 @@ We now show another toy example for which simply exchanging differentiation and 
 Let
 
 <div>
-$$
+\begin{equation}
+  \label{eqn:f_step}
   f(x, \theta) := \begin{cases}
-    1/2, & (x < \theta)\\
-    0. & (x \geq \theta)
+    1, & (x < \theta)\\
+    1/2. & (x \geq \theta)
   \end{cases}
-$$
+\end{equation}
 </div>
 
 Then, for any `$0 < \theta < 1$`, it holds that
 
 <div>
 $$
-  I = \int_0^1 f(x, \theta) \,\D x = \int_0^\theta \frac{1}{2} \,\D x = \left[ \frac{x}{2} \right]_0^{\theta} = \frac{\theta}{2},
+  \begin{split}
+  I &= \int_0^1 f(x, \theta) \,\D x 
+  = \left( \int_0^\theta \D x \right) + \left( \int_{\theta}^1 \frac{1}{2} \,\D x \right)\\
+  &= \left[ x \right]_0^{\theta} + \left[ \frac{x}{2} \right]_{\theta}^1
+  = \theta + \left( \frac{1}{2} - \frac{\theta}{2} \right)
+  = \frac{1}{2} + \frac{\theta}{2},
+  \end{split}
 $$
 </div>
 
@@ -128,7 +137,7 @@ and
 
 <div>
 $$
-  \frac{\D I}{\D\theta} = \frac{\D}{\D\theta} \left( \frac{\theta}{2} \right) = {\color{red}\frac{1}{2}}.
+  \frac{\D I}{\D\theta} = \frac{\D}{\D\theta} \left( \frac{1}{2} + \frac{\theta}{2} \right) = {\color{red}\frac{1}{2}}.
 $$
 </div>
 
@@ -180,16 +189,18 @@ $$
 $$
 </div>
 
-Base on this relation, factoring out `$\Delta\theta$` in Eq. \eqref{eqn:diffI0_0} produces:
+Base on this relation, we can rewrite the area difference \eqref{eqn:diffI0_0} as:
 
 <div>
 $$
-  I(\theta_0 + \Delta\theta) - I(\theta_0) \approx \Delta\theta \int_0^1 \left[ \frac{\D}{\D\theta} f(x, \theta) \right]_{\theta = \theta_0} \D x.
+  I(\theta_0 + \Delta\theta) - I(\theta_0)
+  \approx \int_0^1 \left( \left[ \frac{\D}{\D\theta} f(x, \theta) \right]_{\theta = \theta_0} \Delta\theta \right) \D x
+  = \Delta\theta \int_0^1 \left[ \frac{\D}{\D\theta} f(x, \theta) \right]_{\theta = \theta_0} \D x.
 $$
 </div>
 
 In both equations above, the equalities become exact at the limit of `$\Delta\theta \to 0$`.
-Therefore, for any `$\theta_0 \in \real$`, we have
+Therefore, for any `$0 < \theta_0 < 1$`, we have
 
 <div>
 $$
@@ -198,9 +209,22 @@ $$
 $$
 </div>
 
-which agrees with Eq. \eqref{eqn:dI_0}.
+which agrees with the incomplete solution expressed in Eq. \eqref{eqn:dI_0}.
 
 
 #### The Failure Example
 
 So what has been the cause for the [failure example](#failure-example)?
+To be specific, what has been missing from the incomplete solution \eqref{eqn:dI_0}?
+
+To understand what has been going on, we again examine the integrand `$f(x, \,\theta)$` which, for this example, is the piecewise-constant function defined in Eq. \eqref{eqn:f_step}.
+
+The following are the graphs of `$f(x, \,\theta)$` for some fixed `$\theta = \theta_0$` and `$\theta = \theta_0 + \Delta\theta$` (for some small `$\Delta\theta > 0$`), respectively:
+![FailureExample_0](/images/diff-render/basics/diff-int/FailureExample_0_ManimCE_v0.17.2.png)
+![FailureExample_1](/images/diff-render/basics/diff-int/FailureExample_1_ManimCE_v0.17.2.png)
+
+Further, the difference `$I(\theta_0 + \Delta\theta) - I(\theta_0)$` between the signed areas below the two graphs is caused by the rectangle illustrated in orange:
+![FailureExample_2](/images/diff-render/basics/diff-int/FailureExample_2_ManimCE_v0.17.2.png)
+
+Intuitively, in the [success example](#success-example), the change of signed area is caused by **vertical** shifts of the graph---which is captured by the incomplete solution \eqref{eqn:dI_0}.
+On the other hand, in this [failure example](#failure-example), the change of signed area is caused by **horizontal** shifts of the graph *at jump discontinuities*---which is *missing* from the incomplete solution!
