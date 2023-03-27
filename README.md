@@ -15,3 +15,28 @@ This website is developed using [Hugo](https://gohugo.io/). To build it, you wil
 With Hugo installed, running `hugo sever` under the `./hugo` directory will start a local web server listening on `127.0.0.1:1313`. For the server to also include draft pages, use `hugo server -D` instead.
 
 To build a persistent version of the website (without including any draft pages), run `hugo --minify` under `./hugo`. The resulting static pages will be stored at `./hugo/public`.
+
+## Writing math
+
+This website uses [MathJax](https://www.mathjax.org/) to support both inline and display math (using TeX/LaTeX).
+To enable MathJax on a page, set the page-level parameter `mathjax: true`.
+
+There is a known issue between Hugo's Markdown processor and MathJax: TeX symbols like `_` (for subscripts) may be misinterpreted by the Markdown processor (as italic) and, thus, breaking math equations.
+To mitigate this issue, we use [this trick](https://geoffruddock.com/math-typesetting-in-hugo/) that requires inline math use `` `$ ... $` `` and display math to use
+
+```
+<div>
+$$
+...
+$$
+</div>
+```
+
+or
+
+```
+<div>
+\begin{equation}
+...
+\end{equation}
+</div>
