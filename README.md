@@ -42,6 +42,7 @@ or
 ...
 \end{equation}
 </div>
+```
 
 ### Defining TeX/LaTeX Macros
 
