@@ -256,7 +256,7 @@ Based on the observations [above](#examining-the-previous-examples), we now pres
 
 which comprises:
 
-- A **interior** component obtained by exchanging differentiation and integration operations---same as Eq. \eqref{eqn:dI_0}.
+- A **interior** component obtained by exchanging differentiation and integration operations---identical to Eq. \eqref{eqn:dI_0}.
 
 - A **boundary** component involving a sum over all jump discontinuity points `$\{ x_i(\theta) : i = 1, 2, \ldots \}$`.
 
