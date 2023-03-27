@@ -10,11 +10,11 @@ mathjax: true
 # bookSearchExclude: false
 ---
 
-{{< latex_macros_basic >}}
-
 # Differentiating 1D Integrals
 
 _by [Shuang Zhao](https://shuangz.com)_
+
+{{< latex_macros_basic >}}
 
 In what follows, we discuss the differentiation of a simple Riemann integral `$I(\theta)$` over some 1D interval `$(a, b) \subseteq \real$`:
 

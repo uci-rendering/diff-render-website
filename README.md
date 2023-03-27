@@ -21,7 +21,9 @@ To build a persistent version of the website (without including any draft pages)
 This website uses [MathJax](https://www.mathjax.org/) to support both inline and display math (using TeX/LaTeX).
 To enable MathJax on a page, set the page-level parameter `mathjax: true`.
 
-There is a known issue between Hugo's Markdown processor and MathJax: TeX symbols like `_` (for subscripts) may be misinterpreted by the Markdown processor (as italic) and, thus, breaking math equations.
+### Mitigating Processor Conflicts
+
+There is a known issue between Hugo's Markdown processor and MathJax: TeX symbols like `_` (for subscripts) may be conflicted with Hugo's Markdown processor [Goldmark](https://github.com/yuin/goldmark/) (as italic), causing math equations to break.
 To mitigate this issue, we use [this trick](https://geoffruddock.com/math-typesetting-in-hugo/) that requires inline math to use `` `$ ... $` `` and display math to use
 
 ```
@@ -40,3 +42,17 @@ or
 ...
 \end{equation}
 </div>
+
+### Defining TeX/LaTeX Macros
+
+TeX/LaTeX macros can be defined in Javascript like
+
+```
+<script>
+  window.MathJax.tex.macros = {
+    real: "\\mathbb{R}"
+  };
+</script>
+```
+
+Although one can directly include `<script>` blocks in individual pages, doing so is highly **discouraged**. Instead, it is recommended to utilize Hugo's *shortcodes* functionality by storing macro-containing `<script>` blocks in HTML files under `hugo/layouts/shortcodes/`. To include, for example, the file [`latex_macros_basic.html`](hugo/layouts/shortcodes/latex_macros_basic.html) in a page, use `{{< latex_macros_basic >}}` (perferably *after* the title).

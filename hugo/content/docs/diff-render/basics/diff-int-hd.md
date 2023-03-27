@@ -11,11 +11,11 @@ draft: false
 # bookSearchExclude: false
 ---
 
-{{< latex_macros_basic >}}
-
 # Differentiating General Integrals
 
 _by [Shuang Zhao](https://shuangz.com)_
+
+{{< latex_macros_basic >}}
 
 In the [previous section]({{<relref "diff-int-1D.md" >}}), we have discussed the differentiation of 1D Riemann integrals.
 
@@ -35,4 +35,16 @@ When applied to rendering, the domain `$\Omega$` in Eq. \eqref{eqn:I} can be:
 - The path space under Veach's path-integral formulation.
 
 Assuming that `$f(\bx, \theta)$` is piecewise continuous with a zero-measure boundary `$\overline{\partial\Omega}$` comprised of the domain boundary `$\partial\Omega$` and all jump discontinuity points (as illustrated below).
-Although this assumption may seem strong, it is the case for most, if not all, problems in rendering.
+
+
+
+Although this assumption may seem restrictive, it is the case for most, if not all, problems in rendering.
+
+## Reynolds Transport Theorem
+
+TBD.
+
+
+## Computing Boundary Change Rates
+
+TBD.
