@@ -14,7 +14,7 @@ mathjax: true
 
 # Differentiating 1D Integrals
 
-_by Shuang Zhao_
+_by [Shuang Zhao](https://shuangz.com)_
 
 In what follows, we discuss the differentiation of a simple Riemann integral `$I(\theta)$` over some 1D interval `$(a, b) \subseteq \real$`:
 
@@ -25,10 +25,9 @@ In what follows, we discuss the differentiation of a simple Riemann integral `$I
 \end{equation}
 </div>
 
-
 ## The Incomplete Solution
 
-The derivative of the integral in Eq. \eqref{eqn:I} with respect to `$\theta$` can *sometimes* be obtained by exchanging the ordering of differentiation and integration:
+The derivative of the integral in Eq. \eqref{eqn:I} with respect to `$\theta$` can _sometimes_ be obtained by exchanging the ordering of differentiation and integration:
 
 <div>
 \begin{equation}
@@ -38,8 +37,9 @@ The derivative of the integral in Eq. \eqref{eqn:I} with respect to `$\theta$` c
 \end{equation}
 </div>
 
-Precisely, the second equality in Eq. \eqref{eqn:dI_0} requires the integrand $f$ to be **continuous** throughout the interval `$(a, b)$`.
+Precisely, the second equality in Eq. \eqref{eqn:dI_0} requires the integrand $f$ to be **continuous**[^1] throughout the interval `$(a, b)$`.
 
+[^1]: Unless otherwise stated, we use "continuous" to indicate the `$C^0$` class.
 
 ### Success Example
 
@@ -73,7 +73,6 @@ $$
 </div>
 
 which matches the manually calculated result above.
-
 
 ### Failure Example
 
@@ -124,14 +123,11 @@ $$
 
 which does **not** match the manually calculated result in Eq. \eqref{eqn:f_step_dI_manual}.
 
-
 ## The General Solution
-
 
 ### Examining The Previous Examples
 
 Before presenting the general expression of the derivative `$\D I/\D\theta$`, we first examine the examples shown above.
-
 
 #### The Success Example
 
@@ -174,7 +170,7 @@ $$
 </div>
 
 In both equations above, the equalities become exact at the limit of `$\Delta\theta \to 0$`.
-Therefore, for any `$0 < \theta_0 < 1$`, we have
+By dividing both sides by `$\Delta\theta$` and taking the limit of `$\Delta\theta \to 0$`, we have
 
 <div>
 $$
@@ -183,8 +179,8 @@ $$
 $$
 </div>
 
-which agrees with the incomplete solution expressed in Eq. \eqref{eqn:dI_0}.
-
+for any `$0 < \theta_0 < 1$`.
+This agrees with the incomplete solution expressed in Eq. \eqref{eqn:dI_0}.
 
 #### The Failure Example
 
@@ -200,8 +196,8 @@ The following are the graphs of `$f(x, \theta)$` for some fixed `$\theta = \thet
 Further, the difference `$I(\theta_0 + \Delta\theta) - I(\theta_0)$` between the signed areas below the two graphs is caused by the rectangle illustrated in orange:
 ![FailureExample_2](/images/diff-render/basics/diff-int/FailureExample_2_ManimCE_v0.17.2.png)
 
-Intuitively, in the [success example](#success-example), the change of signed area is caused by **vertical** shifts of the graph---which is captured by the incomplete solution \eqref{eqn:dI_0}.
-On the other hand, in this [failure example](#failure-example), the change of signed area is caused by **horizontal** shifts of the graph *at jump discontinuities*---which is *missing* from the incomplete solution!
+Intuitively, in the [success example](#success-example), the change of signed area is caused by **vertical** shifts of the graph---which is captured by the incomplete solution \eqref{eqn:dI*0}.
+On the other hand, in this [failure example](#failure-example), the change of signed area is caused by **horizontal** shifts of the graph \_at jump discontinuities*---which is _missing_ from the incomplete solution!
 
 We now calculate the signed area of the orange rectangle shown above.
 We first observe that the length of the rectangle's vertical edge equals the difference `$\Delta f \equiv 1 - 1/2 = 1/2$` of the integrand `$f(x, \theta)$` across the discontinuity point.
@@ -248,9 +244,11 @@ Based on the observations [above](#examining-the-previous-examples), we now pres
 <div>
 \begin{equation}
   \label{eqn:dI}
-  \frac{\D}{\D\theta} \left( \int_a^b f(x, \theta) \,\D x \right)
-  = \underbrace{\int_a^b \left( \frac{\D}{\D\theta} f(x, \theta) \right) \D x}_{\text{interior}} \,+\,
-  \underbrace{\sum_i \Delta f(x_i(\theta), \theta) \,\frac{\D}{\D\theta} x_i(\theta)}_{\text{boundary}}\,,
+  \boxed{
+    \frac{\D}{\D\theta} \left( \int_a^b f(x, \theta) \,\D x \right)
+    = \underbrace{\int_a^b \left( \frac{\D}{\D\theta} f(x, \theta) \right) \D x}_{\text{interior}} \,+\,
+    \underbrace{\sum_i \Delta f(x_i(\theta), \theta) \,\frac{\D}{\D\theta} x_i(\theta)}_{\text{boundary}}\,,
+  }
 \end{equation}
 </div>
 
@@ -262,7 +260,7 @@ which comprises:
 
 #### Remarks
 
-Precisely, `$\Delta f(x, \theta)$` in the *boundary* component is defined as
+Precisely, `$\Delta f(x, \theta)$` in the _boundary_ component is defined as
 
 <div>
 $$
@@ -270,7 +268,7 @@ $$
 $$
 </div>
 
-where `$\lim_{u \uparrow x}$` and `$\lim_{u \downarrow x}$` denote **one-sided limits** with `$u$` approaching `$x$` from *below* (i.e., `$u < x$`) and *above* (i.e., `$u > x$`), respectively.
+where `$\lim_{u \uparrow x}$` and `$\lim_{u \downarrow x}$` denote **one-sided limits** with `$u$` approaching `$x$` from _below_ (i.e., `$u < x$`) and _above_ (i.e., `$u > x$`), respectively.
 For any fixed $\theta$, $\Delta f(x, \theta)$ is nonzero (and well-defined) if and only if `$x$` is a jump discontinuity point of `$f(\cdot, \theta)$`.
 
 Lastly, when the endpoints `$a$` and `$b$` of the integral depend on `$\theta$`, they should be considered as jump discontinuities with `$\Delta f(a, \theta) = -f(a, \theta)$` and `$\Delta f(b, \theta) = f(b, \theta)$`.

@@ -22,7 +22,7 @@ This website uses [MathJax](https://www.mathjax.org/) to support both inline and
 To enable MathJax on a page, set the page-level parameter `mathjax: true`.
 
 There is a known issue between Hugo's Markdown processor and MathJax: TeX symbols like `_` (for subscripts) may be misinterpreted by the Markdown processor (as italic) and, thus, breaking math equations.
-To mitigate this issue, we use [this trick](https://geoffruddock.com/math-typesetting-in-hugo/) that requires inline math use `` `$ ... $` `` and display math to use
+To mitigate this issue, we use [this trick](https://geoffruddock.com/math-typesetting-in-hugo/) that requires inline math to use `` `$ ... $` `` and display math to use
 
 ```
 <div>
