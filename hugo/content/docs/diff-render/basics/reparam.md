@@ -1,6 +1,7 @@
 ---
 title: "Reparameterization"
-weight: 2
+weight: 3
+mathjax: true
 draft: true
 # bookFlatSection: false
 # bookToc: true

@@ -119,7 +119,7 @@ class FailureExample_0(Example_Base):
 
     def construct(self):
         graph0, label0, area0, area0_label = self.get_plot(self.f0, BLUE, r"\theta_0", ORIGIN, smooth=False)
-        label0.next_to(self.ax.c2p(self.t0, .5*self.y0), direction=UR)
+        label0.next_to(self.ax.c2p(self.t0, .75*self.y0), direction=RIGHT)
         self.add(graph0, label0, area0, area0_label)
 
 
@@ -184,6 +184,6 @@ class FailureExample_2(FailureExample_1):
             Line(self.ax.c2p(self.t0 + self.dt, .5*self.y0), self.ax.c2p(self.t0 + self.dt, self.y0)),
             direction=RIGHT, color=BLACK, fill_opacity=.5
         )
-        brace_tex = MathTex(r"\Delta f", color=BLACK).scale(.8).set_opacity(.5)
+        brace_tex = MathTex(r"\Delta f = \frac{1}{2}", color=BLACK).scale(.8).set_opacity(.5)
         brace_tex.next_to(brace, RIGHT)
         self.add(brace, brace_tex)
