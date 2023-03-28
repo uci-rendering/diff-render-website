@@ -23,7 +23,7 @@ To enable MathJax on a page, set the page-level parameter `mathjax: true`.
 
 ### Mitigating Processor Conflicts
 
-There is a known issue between Hugo's Markdown processor and MathJax: TeX symbols like `_` (for subscripts) may be conflicted with Hugo's Markdown processor [Goldmark](https://github.com/yuin/goldmark/) (as italic), causing math equations to break.
+There is a known issue between Hugo's Markdown processor and MathJax: TeX symbols like `_` (for subscripts) may be conflicted with Hugo's Markdown processor [Goldmark](https://github.com/yuin/goldmark/) (for italic fonts), causing math equations to break.
 To mitigate this issue, we use [this trick](https://geoffruddock.com/math-typesetting-in-hugo/) that requires inline math to use `` `$ ... $` `` and display math to use
 
 ```
@@ -56,4 +56,4 @@ TeX/LaTeX macros can be defined in Javascript like
 </script>
 ```
 
-Although one can directly include `<script>` blocks in individual pages, doing so is highly **discouraged**. Instead, it is recommended to utilize Hugo's *shortcodes* functionality by storing macro-containing `<script>` blocks in HTML files under `hugo/layouts/shortcodes/`. To include, for example, the file [`latex_macros_basic.html`](hugo/layouts/shortcodes/latex_macros_basic.html) in a page, use `{{< latex_macros_basic >}}` (perferably *after* the title).
+Although one can directly include `<script>` blocks in individual pages, doing so is highly **discouraged**. Instead, it is recommended to utilize Hugo's *shortcodes* functionality by storing macro-containing `<script>` blocks in HTML files under [`hugo/layouts/shortcodes/`](hugo/layouts/shortcodes/). To include, for example, the file [`latex_macros_basic.html`](hugo/layouts/shortcodes/latex_macros_basic.html) in a page, use `{{< latex_macros_basic >}}` (perferably *after* the title).
