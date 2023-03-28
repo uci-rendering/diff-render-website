@@ -13,4 +13,8 @@ draft: true
 
 # Reparameterization
 
+_by [Shuang Zhao](https://shuangz.com)_
+
+{{< latex_macros_basic >}}
+
 TBD.

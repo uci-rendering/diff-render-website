@@ -10,11 +10,11 @@ mathjax: true
 # bookSearchExclude: false
 ---
 
-{{< latex_macros_basic >}}
-
 # Differentiating 1D Integrals
 
 _by [Shuang Zhao](https://shuangz.com)_
+
+{{< latex_macros_basic >}}
 
 In what follows, we discuss the differentiation of a simple Riemann integral `$I(\theta)$` over some 1D interval `$(a, b) \subseteq \real$`:
 
@@ -133,10 +133,10 @@ Before presenting the general expression of the derivative `$\D I/\D\theta$`, we
 
 We first examine the [success example](#success-example) with the integrand `$f(x, \theta) = x^2 \,\theta$`.
 In the following, we show the graph of `$f(x, \theta)$` for some fixed `$\theta = \theta_0$` in the following:
-![SuccessExample_0](/images/diff-render/basics/diff-int/SuccessExample_0_ManimCE_v0.17.2.png)
+![SuccessExample_0](/images/diff-render/basics/diff-int-1d/SuccessExample_0_ManimCE_v0.17.2.png)
 By definition, the integral `$I(\theta_0) := \int_0^1 f(x, \theta) \,\D x$` equals the signed area (marked in light blue) of the region below the graph.
 Further, by adding some small `$\Delta\theta > 0$` to `$\theta_0$`, we obtain the graph of `$f(x, \theta_0 + \Delta\theta)$` and the corresponding signed area `$I(\theta_0 + \Delta\theta)$`, both illustrated in red:
-![SuccessExample_1](/images/diff-render/basics/diff-int/SuccessExample_1_ManimCE_v0.17.2.png)
+![SuccessExample_1](/images/diff-render/basics/diff-int-1d/SuccessExample_1_ManimCE_v0.17.2.png)
 
 We recall that the derivative of $I$ with respect to `$\theta$` is given by the rate at which $I$ changes with `$\theta$`.
 To calculate this rate, we examine the difference between `$I(\theta_0 + \Delta\theta)$` and `$I(\theta_0)$`:
@@ -149,7 +149,7 @@ To calculate this rate, we examine the difference between `$I(\theta_0 + \Delta\
 </div>
 
 Geometrically, this difference equals the (signed) area of the orange region illustrated below:
-![SuccessExample_2](/images/diff-render/basics/diff-int/SuccessExample_2_ManimCE_v0.17.2.png)
+![SuccessExample_2](/images/diff-render/basics/diff-int-1d/SuccessExample_2_ManimCE_v0.17.2.png)
 
 At each fixed `$0 < x < 1$`, the integrand of Eq. \eqref{eqn:diffI0_0} satisfies that
 
@@ -190,11 +190,11 @@ To be specific, what has been missing from the incomplete solution \eqref{eqn:dI
 To understand what has been going on, we again examine the integrand `$f(x, \theta)$` which, for this example, is the piecewise-constant function defined in Eq. \eqref{eqn:f_step}.
 
 The following are the graphs of `$f(x, \theta)$` for some fixed `$\theta = \theta_0$` and `$\theta = \theta_0 + \Delta\theta$` (for some small `$\Delta\theta > 0$`), respectively:
-![FailureExample_0](/images/diff-render/basics/diff-int/FailureExample_0_ManimCE_v0.17.2.png)
-![FailureExample_1](/images/diff-render/basics/diff-int/FailureExample_1_ManimCE_v0.17.2.png)
+![FailureExample_0](/images/diff-render/basics/diff-int-1d/FailureExample_0_ManimCE_v0.17.2.png)
+![FailureExample_1](/images/diff-render/basics/diff-int-1d/FailureExample_1_ManimCE_v0.17.2.png)
 
 Further, the difference `$I(\theta_0 + \Delta\theta) - I(\theta_0)$` between the signed areas below the two graphs is caused by the rectangle illustrated in orange:
-![FailureExample_2](/images/diff-render/basics/diff-int/FailureExample_2_ManimCE_v0.17.2.png)
+![FailureExample_2](/images/diff-render/basics/diff-int-1d/FailureExample_2_ManimCE_v0.17.2.png)
 
 Intuitively, in the [success example](#success-example), the change of signed area is caused by **vertical** shifts of the graph---which is captured by the incomplete solution \eqref{eqn:dI*0}.
 On the other hand, in this [failure example](#failure-example), the change of signed area is caused by **horizontal** shifts of the graph \_at jump discontinuities*---which is _missing_ from the incomplete solution!
