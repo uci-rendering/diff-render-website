@@ -118,7 +118,7 @@ Then,
 
 ### Normal Change Rate `$\vel$`
 
-Another key component of the *boundary* integral in Eq. \eqref{eqn:dI_reynolds} is the **normal change rate** term `$\vel$` which, at a high level, captures how fast the extended boundary `$\boundary(\theta)$` evolves (with respect to `$\theta$`) along the normal `$\bn$`.
+Another key component of the *boundary* integral in Eq. \eqref{eqn:dI_reynolds} is the **normal change rate** term `$\vel$` which, at a high level, captures how fast the extended boundary `$\boundary(\theta)$` evolves along the normal `$\bn$` (with respect to `$\theta$`).
 Precisely, for any `$\bx \in \boundary(\theta)$`, we have
 
 <div>
@@ -157,4 +157,8 @@ That is, it depends on the choice of the local parameterization specified by the
 On the contrary, the normal change rate `$\vel(\bx)$` from Eq. \eqref{eqn:vel} is known to be *parameterization-independent*.
 In other words, regardless to the choice of $\alphaBnd$, `$\vel(\bx)$` remains identical.
 
+<!--
 ## Examples
+
+We now use a few examples to illustrate how Eq. \eqref{eqn:dI_reynolds} works.
+-->
